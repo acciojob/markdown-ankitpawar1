@@ -9,12 +9,14 @@ const App = () => {
   return (
     <div className="app">
       <div className="markDownContainer">
-        <textarea value={change} onChange={(e) => setChange(e.target.value)} />
+        <textarea
+          className="textarea"
+          value={change}
+          onChange={(e) => setChange(e.target.value)}
+        />
       </div>
       <div className="preview">
-        <h1>
-          <b id="markDown"></b>
-        </h1>
+        <h1 className="loading" id="markDown"></h1>
       </div>
     </div>
   );
