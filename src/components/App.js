@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from "react";
-
+import "../styles/App.css";
 const App = () => {
-  const [change, setChange] = useState("");
+  let [data, setData] = useState("");
+
   useEffect(() => {
-    document.getElementById("markDown").innerText = change;
-  }, [change]);
+    if (!data) {
+      setData(<p className="loading">loading</p>);
+    }
+    if (typeof data === "string") {
+      if (data.includes("#")) {
+        setData(
+          <h1 style={{ fontWeight: "bold" }}> {data.split("#").join("")}</h1>
+        );
+      }
+    }
+  }, [data]);
 
   return (
     <div className="app">
-      <div className="markDownContainer">
-        <textarea
-          className="textarea"
-          value={change}
-          onChange={(e) => setChange(e.target.value)}
-        />
-      </div>
+      <textarea
+        className="textarea"
+        onChange={(e) => setData(e.target.value)}
+      ></textarea>
       <div className="preview">
-        <p className="loading" id="markDown"></p>
+        <p>{data}</p>
       </div>
     </div>
   );
